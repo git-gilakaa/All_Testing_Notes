@@ -1,0 +1,68 @@
+Git Upload: First-Time Setup & Push
+===================================
+
+Step 1: Initialize Git in your project folder
+- Open Command Prompt or Terminal
+- Navigate to your project path:
+  cd path/to/your/project
+- Run:
+  git init
+  → This initializes a new Git repository in the current folder.
+
+Step 2: Connect to your GitHub repository
+- Run:
+  git remote add origin https://github.com/your-username/your-repo-name.git
+  → This links your local project to the remote GitHub repository.
+
+Step 3: Stage all files for commit
+- Run:
+  git add .
+  → This adds all files in the folder to Git's staging area.
+
+Step 4: Commit your changes
+- Run:
+  git commit -m "Initial commit - project upload"
+  → This saves your staged changes with a message.
+
+Step 5: Push files to GitHub
+- Run:
+  git push -u origin main
+  → This pushes your code to the 'main' branch of the remote repo.
+  → If your repo uses 'master', replace 'main' with 'master'.
+
+Done! Your project is now live on GitHub.
+
+Git Upload: Merging Local Branch to Master
+==========================================
+
+Step 1: Ensure you're in your local branch
+- Run:
+  git branch
+  → Confirms your current branch (marked with *). Make sure you're in the correct one.
+
+Step 2: Stage and commit your changes
+- Run:
+  git add .
+  → Stages all modified and new files.
+
+- Run:
+  git commit -m "Your commit message here"
+  → Saves the staged changes to your local branch history.
+
+Step 3: Switch to the master branch
+- Run:
+  git checkout master
+  → Moves you to the master branch.
+
+Step 4: Merge your local branch into master
+- Run:
+  git merge your-local-branch-name
+  → Replace with your actual branch name (e.g., feature-api-tests).
+
+Step 5: Push the master branch to GitHub
+- Run:
+  git push origin master
+  → Uploads the merged changes to the master branch on GitHub.
+
+Done! Your local branch changes are now live in the master branch of your GitHub repository.
+
