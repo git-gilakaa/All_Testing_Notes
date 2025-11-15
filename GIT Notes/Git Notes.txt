@@ -1,5 +1,5 @@
-Git Upload: First-Time Setup & Push
-===================================
+1 - Git Upload: First-Time Setup & Push
+=======================================
 
 Step 1: Initialize Git in your project folder
 - Open Command Prompt or Terminal
@@ -32,8 +32,8 @@ Step 5: Push files to GitHub
 
 Done! Your project is now live on GitHub.
 
-Git Upload: Merging Local Branch to Master
-==========================================
+2 - Git Upload: Merging Local Branch to Master
+==============================================
 
 Step 1: Confirm you're in your local branch
 - Run:
@@ -70,4 +70,81 @@ Step 6: Push the updated master branch to GitHub
   → Uploads the merged changes to the master branch on GitHub.
 
 
+3 - Git Merge Conflict: Understanding and Resolving
+===================================================
+
+- I am in the master branch and I made 3 commits: C1 → C2 → C3
+- Then I created a dev branch, checked out to dev, and made some changes
+- I did not make any changes on the master branch
+- Then I merged both branches
+
+✅ No merge conflicts occurred because changes were made only in one direction (dev branch only)
+
+❗ If I make changes to the same file in both master and dev branches, and then try to merge, I may get merge conflicts
+
+Common Reasons for Merge Conflicts:
+-----------------------------------
+1. Both branches changed the same lines in a file
+2. One branch renamed or moved a file, while the other branch edited it
+3. One branch deleted a file, while the other branch modified it
+
+
+Examples to understand:
+======================
+
+- I am in the master branch and created a file named 'File1' with one line of data
+- I committed it as: "master C1"
+
+- Then I created a new branch 'dev' and checked out to dev
+- I edited the line in 'File1' and committed it as: "dev C1"
+
+- We can check the commit history using:
+  git log --oneline
+
+- Now, if we merge 'dev' into 'master', we won't get conflicts because no changes were made on master (this is a one-way flow)
+
+- Now I check out to 'master' and make some changes in the same file ('File1')
+- Then I try to merge 'dev' into 'master' — ❗ Now I will get conflicts because both branches changed the same file
+
+Conflict Resolution Options:
+============================
+
+1. Accept Current Change
+→ Keeps the version of the file from your current branch  
+→ Example: If you're on master, it keeps master’s version
+
+2. Accept Incoming Change
+→ Keeps the version coming from the branch you're merging  
+→ Example: If you're merging dev into master, it keeps dev’s version
+
+3. Accept Both Changes
+→ Keeps both versions in the file — one after the other  
+→ You may need to manually clean or adjust the result
+
+4. Compare Changes
+→ Opens a side-by-side view to help you see the difference  
+→ Useful for deciding which version to keep
+
+How to Resolve a Merge Conflict:
+================================
+Step 1: Git will show the conflict in the file
+
+Step 2: Open the file and look for conflict markers like:
+
+<<<<<<< HEAD
+Your current branch content
+=======
+Incoming branch content
+>>>>>>> dev
+
+Step 3: Edit the file manually to keep the correct version
+
+Step 4: Save the file
+
+Step 5: Run:
+  git add filename
+  git commit -m "Resolved merge conflict"
+
+Step 6: Push the changes to GitHub
+  git push origin master
 
