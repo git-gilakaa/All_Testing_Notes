@@ -1,5 +1,3 @@
-For PR Testing purpose only
-
 1 - Git Upload: First-Time Setup & Push
 =======================================
 
@@ -149,4 +147,144 @@ Step 5: Run:
 
 Step 6: Push the changes to GitHub
   git push origin master
+
+
+4 - Git: Push GIT_NOTES to PR_Branch and Raise Pull Request
+===========================================================
+
+Step 1: Make sure you're in the GIT_NOTES branch
+------------------------------------------------
+Run:
+  git branch
+→ You should see:
+  * GIT_NOTES
+    master
+    PR_Branch
+
+If not in GIT_NOTES, switch to it:
+  git checkout GIT_NOTES
+
+Step 2: Stage and commit your changes
+-------------------------------------
+Run:
+  git add .
+  git commit -m "Your commit message here"
+
+Step 3: Push GIT_NOTES to GitHub (optional backup)
+--------------------------------------------------
+Run:
+  git push origin GIT_NOTES
+
+Step 4: Switch to PR_Branch
+---------------------------
+Run:
+  git checkout PR_Branch
+
+Step 5: Merge GIT_NOTES into PR_Branch
+--------------------------------------
+Run:
+  git merge GIT_NOTES
+→ This brings all changes from GIT_NOTES into PR_Branch
+
+Step 6: Push PR_Branch to GitHub
+--------------------------------
+Run:
+  git push origin PR_Branch
+
+Step 7: Go to GitHub and raise a Pull Request
+---------------------------------------------
+- Open your GitHub repo: 'git-glakaa/All_Testing_Notes'
+- Switch to the 'PR_Branch'
+- Click "Compare & pull request"
+- Review the changes
+- Add a title and description
+- Click "Create pull request"
+
+✅ Done! Your changes from GIT_NOTES are now in PR_Branch and ready for review via a Pull Request.
+
+
+5 - Git Branching: Local vs Remote
+==================================
+
+Step 1: See all remote branches
+-------------------------------
+Run:
+  git branch -r
+→ Shows all branches available on GitHub (remote)
+
+Example output:
+  origin/master
+  origin/GIT_NOTES
+  origin/PR_Branch
+
+Step 2: Fetch latest data from GitHub
+-------------------------------------
+Run:
+  git fetch origin
+→ Updates your local Git with the latest remote branches
+
+Step 3: Create a local copy of a remote branch
+----------------------------------------------
+Run:
+  git checkout -b local-branch-name origin/remote-branch-name
+
+Example:
+  git checkout -b PR_Branch origin/PR_Branch
+→ Creates a local branch named 'PR_Branch' from the remote 'origin/PR_Branch'
+
+Step 4: Confirm it's now local
+------------------------------
+Run:
+  git branch
+→ You should see 'PR_Branch' listed as a local branch
+
+✅ Done! You now have the remote branch available locally and can start working on it.
+
+What is a Local Branch?
+------------------------
+- A local branch exists only on your computer.
+- You can create, edit, commit, and test code in it.
+- It is not visible to others until you push it to GitHub.
+
+Example:
+  git branch dev
+→ Creates a local branch named 'dev'
+
+What is a Remote Branch?
+------------------------
+- A remote branch exists on GitHub (or any Git server).
+- It is shared with your team and visible online.
+- You must push your local branch to create a remote branch.
+
+Example:
+  origin/dev
+→ This is a remote branch named 'dev' on GitHub
+
+Use of Remote Branch
+---------------------
+- Remote branches allow team collaboration.
+- Others can pull, review, or merge your changes.
+- They help manage feature development, bug fixes, and PR workflows.
+- Remote branches are essential for version control in shared projects.
+
+How to Create a Remote Branch from Local
+----------------------------------------
+Step 1: Create a local branch
+  git checkout -b PR_Branch
+
+Step 2: Push it to GitHub (remote)
+  git push origin PR_Branch
+
+→ Now 'PR_Branch' exists both locally and remotely
+
+How to Check Branches
+----------------------
+- Local branches:
+  git branch
+
+- Remote branches:
+  git branch -r
+
+- All branches (local + remote):
+  git branch -a
 
