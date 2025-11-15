@@ -1,0 +1,62 @@
+1. git init  
+   → Start using Git in this folder.
+
+2. git clone <repo_url>  
+   → Copy a project from GitHub to your computer.
+
+3. git status  
+   → Check what has changed in your files.
+
+4. git add <file> OR git add .  
+   → Tell Git which files you want to save (stage files).
+
+5. git commit -m "message"  
+   → Save your changes permanently with a short note.
+
+6. git push  
+   → Send your saved changes to GitHub (upload).
+
+7. git pull  
+   → Get the latest changes from GitHub and add them to your code.
+
+8. git fetch  
+   → Only download latest changes from GitHub (do NOT mix/merge them yet).
+
+9. git merge <branch>  
+   → Combine another branch into your current branch.
+
+10. git log  
+    → Show a list of all commits (history).
+
+11. git diff  
+    → Show what is different between file versions.
+
+ *********************************************************
+
+1. git branch  
+   → Show all branches in the project.
+
+2. git branch <branch_name>  
+   → Create a new branch (but don’t switch to it).
+
+3. git checkout <branch_name>  
+   → Switch to an existing branch.
+
+4. git checkout -b <branch_name>  
+   → Create a new branch AND switch to it.
+
+5. git merge <branch_name>  
+   → Combine the given branch into your current branch.
+
+6. git rebase <branch_name>  
+   → Move your current branch on top of another branch (clean history).
+
+7. git branch -d <branch_name>  
+   → Delete a branch safely (only if it is merged).
+
+8. git branch -D <branch_name>  
+   → Force delete a branch (even if not merged).
+
+9. git remote set-head origin <branch_name>  
+   → Set the main/default branch on remote (GitHub).
+

@@ -1,0 +1,135 @@
+====================================================
+HOW TO RESOLVE GIT CONFLICTS MANUALLY
+====================================================
+
+Why conflicts happen?
+- A conflict happens when two people change the same line 
+  (or nearby lines) in the same file and then try to merge.
+- Git does not know which change to keep, so it asks you.
+
+----------------------------------------------------
+Steps to Resolve Git Conflicts
+----------------------------------------------------
+
+1) Try to merge or pull
+   - Run: git pull   OR   git merge <branch>
+   - If there is a conflict, Git will stop and show a message.
+
+2) See which files have conflicts
+   - Run: git status
+   - You will see files marked as "unmerged".
+
+3) Open the conflicted file
+   - In the file, Git will mark conflicts like this:
+
+     <<<<<<< HEAD
+     Your changes
+     =======
+     Other person’s changes
+     >>>>>>> branch-name
+
+4) Manually fix the file
+   - Decide which changes to keep.
+   - You can:
+     a) Keep your changes.
+     b) Keep other person’s changes.
+     c) Combine both (edit the text).
+   - Remove the conflict markers (<<<<<<<, =======, >>>>>>>).
+
+5) Mark conflict as resolved
+   - Run: git add <filename>
+
+6) Commit the changes
+   - Run: git commit
+   - This will save the merged result.
+
+7) Push the changes
+   - Run: git push
+
+----------------------------------------------------
+Extra Commands (Helpful)
+----------------------------------------------------
+- git diff        → shows the difference in files.
+- git log --merge → shows commits that caused conflict.
+- git merge --abort → cancel the merge and go back.
+- git checkout --ours <file> → keep your version.
+- git checkout --theirs <file> → keep other branch’s version.
+
+----------------------------------------------------
+Summary
+----------------------------------------------------
+1) git status → check conflict files
+2) open file → fix manually (remove conflict markers)
+3) git add → mark fixed
+4) git commit → save
+5) git push → done
+
+====================================================
+RESOLVING GIT CONFLICTS WITHOUT MANUAL EDIT
+====================================================
+
+Option 1: Keep Your Changes (ignore others)
+-------------------------------------------
+1) Run: git checkout --ours <file>
+2) Run: git add <file>
+3) Run: git commit
+
+This keeps your version of the file.
+
+Option 2: Keep Other Branch’s Changes (ignore yours)
+-----------------------------------------------------
+1) Run: git checkout --theirs <file>
+2) Run: git add <file>
+3) Run: git commit
+
+This keeps the other branch’s version.
+
+Option 3: Keep All Your Files (in one command)
+----------------------------------------------
+- Run: git merge -X ours <branch>
+  → Keeps your changes for all conflicts.
+
+Option 4: Keep All Other Branch’s Files
+---------------------------------------
+- Run: git merge -X theirs <branch>
+  → Keeps other branch’s changes for all conflicts.
+
+Option 5: Abort Merge
+---------------------
+- Run: git merge --abort
+  → Cancels the merge and goes back to before.
+
+====================================================
+QUICK SUMMARY
+----------------------------------------------------
+- Keep mine only → git checkout --ours <file>
+- Keep theirs only → git checkout --theirs <file>
+- Apply for all files → git merge -X ours / theirs
+- Cancel merge → git merge --abort
+====================================================
+
+
+====================================================
+FIXING GIT CONFLICTS USING COMMANDS ONLY
+====================================================
+
+1) Keep Your Changes (ignore other branch)
+   git checkout --ours <file>
+   git add <file>
+   git commit
+
+2) Keep Other Branch Changes (ignore yours)
+   git checkout --theirs <file>
+   git add <file>
+   git commit
+
+3) Keep All Your Changes (for all files in one go)
+   git merge -X ours <branch>
+
+4) Keep All Other Branch Changes (for all files)
+   git merge -X theirs <branch>
+
+5) Abort Merge (cancel merge completely)
+   git merge --abort
+====================================================
+

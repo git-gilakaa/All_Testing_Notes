@@ -1,0 +1,942 @@
+1. What is Cucumber?
+
+Simple Answer: Cucumber is a tool used to run automated tests written in a human-readable format.
+Purpose: It helps testers, developers, and non-technical people understand the tests easily.
+Implementation: You write tests in a feature file using Gherkin language and run them with Cucumber.
+Example: “Login to website with valid username and password.” Anyone can read it, even if they don’t know code.
+
+2. What makes Cucumber unique?
+
+Simple Answer: Cucumber lets you write tests in plain English, so non-technical people can understand and even write tests.
+Purpose: Bridges the gap between business and tech teams.
+Example: Instead of code, you write:
+
+Scenario: User logs in
+   Given user is on login page
+   When user enters username and password
+   Then user should see the dashboard
+
+3 & 4. Advantages of Cucumber / Using Cucumber
+
+1. Tests are readable by everyone.
+2. Supports BDD (Behavior Driven Development).
+3. Helps collaboration between devs, testers, and business.
+4. Can be integrated with tools like Selenium for automation.
+5. Supports reusable step definitions.
+
+Example: One step “user logs in” can be used in multiple scenarios, saving time.
+
+5. What is BDD (Behavior Driven Development)?
+
+BDD (Behavior Driven Development) - Notes
+
+1. The Problem Before BDD
+   - In software development, three main roles are involved:
+     a) Business people / product owners → Explain what the software should do.
+     b) Developers → Write the code to make it work.
+     c) Testers (QA) → Check if the software works correctly.
+   - Problem: Each group speaks a different "language".
+     • Business → Business terms
+     • Developers → Programming language
+     • Testers → Testing terms
+   - Because of this, miscommunication happens which leads to:
+     • Features being built wrongly
+     • Bugs being missed
+     • Waste of time and effort
+
+2. What is BDD?
+   - BDD stands for Behavior Driven Development.
+   - It is a way of developing software where:
+     • Everyone (business, developers, testers) speaks the same simple language.
+     • That language describes the behavior of the software (from the user’s perspective).
+   - Instead of technical details first, we write examples of behavior in plain English.
+   - In simple words:
+     “Describe how the software should behave in everyday language so everyone understands it. Then use those descriptions to guide development and testing.”
+
+3. Special Language in BDD → Gherkin
+   - Gherkin is the format used in BDD to write scenarios.
+   - It uses specific keywords:
+     • Given → The starting point / precondition
+     • When → The action
+     • Then → The expected outcome
+
+   Example: Login Feature
+   Scenario: Successful login
+     Given user is on the login page
+     When user enters username "admin" and password "admin123"
+     And clicks on login button
+     Then user should be navigated to the home page
+
+6. Advantages of BDD
+
+1. Improves communication between teams.
+2. Makes requirements clear.
+3. Helps catch bugs early.
+4. Makes test scenarios reusable.
+Example: Everyone agrees that “dashboard shows after login” is correct, reducing misunderstandings.
+
+7. Components of a Cucumber BDD framework
+
+1. Feature file – where scenarios are written.
+2. Step definition file – connects steps in feature file to code.
+3. Runner class – runs the tests.
+4. Hooks – pre/post actions like open/close browser.
+5. Configuration files – for test settings.
+
+8. Files needed in a Cucumber framework
+
+1. Feature files
+2. Step definition files
+3. Runner class (TestRunner)
+4. Hooks file (optional)
+5. Config files for browser or environment setup
+
+9. What is the Gherkin language?
+
+Simple Answer: Gherkin is the plain English language used to write Cucumber tests.
+Purpose: Makes test cases readable for everyone.
+Example:
+
+Given user is on login page
+When user enters username and password
+Then user should see dashboard
+
+10. Different keywords used in a feature file
+
+Simple Answer: The main keywords are:
+- Feature – the functionality being tested
+- Scenario – a single test case
+- Given – setup steps
+- When – action steps
+- Then – verification steps
+- And / But – to combine steps
+- Scenario Outline – for parameterized tests
+- Examples – provide data for Scenario Outline
+
+Example:
+
+Feature: Login
+Scenario: Valid login
+   Given user is on login page
+   When user enters valid credentials
+   Then user should see dashboard
+
+11. Keywords used to build a scenario in Cucumber
+
+- Feature, Scenario, Scenario Outline, Given, When, Then, And/But, Examples
+Example:
+Feature: Login
+Scenario: Valid login
+   Given user is on login page
+   When user enters valid credentials
+   Then user should see dashboard
+
+12. Purpose of keywords in Cucumber
+
+- Feature: describes functionality
+- Scenario: a single test case
+- Scenario Outline: template for multiple inputs
+- Given: setup condition
+- When: action performed
+- Then: expected result
+- And/But: additional steps
+- Examples: data for Scenario Outline
+
+Example:
+Given user is on login page
+When user enters username and password
+Then user should see dashboard
+
+13. Different types of steps in Cucumber
+
+- Given: Precondition or setup
+- When: Action
+- Then: Verification or result
+- And/But: Additional steps
+Example:
+Given user is on login page
+When user enters username and password
+Then user should see dashboard
+And user should see welcome message
+
+14. Purpose of Given, When, Then, And steps
+
+- Given: prepares the system
+- When: user action
+- Then: verification
+- And/But: extra steps
+
+Example:
+Given user is on login page
+When user clicks login button
+Then user should see dashboard
+And user should see notifications
+
+15. Background keyword in Cucumber
+
+- Runs common steps before every scenario in a feature
+
+Example:
+Background:
+   Given user is logged in
+   And user is on home page
+Scenario: Check dashboard
+   When user clicks dashboard
+   Then dashboard should appear
+Scenario: Check profile
+   When user clicks profile
+   Then profile page should appear
+
+16. Examples keyword in Cucumber
+
+- Provides data for Scenario Outline
+
+Example:
+Scenario Outline: Login with multiple users
+   Given user is on login page
+   When user enters <username> and <password>
+   Then user should see dashboard
+Examples:
+   | username | password |
+   | user1    | pass1    |
+   | user2    | pass2    |
+
+17. Scenario Outline and parameterization
+
+- Template for scenarios with variable inputs
+- Use <placeholders> in steps
+- Provide data in Examples table
+- Scenario runs for each row
+
+Example: See Q16
+
+18. Difference between Background and Scenario Outline
+
+- Background: common setup steps for all scenarios
+- Scenario Outline: runs multiple times with different data
+
+  Memory trick: Background = setup, Scenario Outline = multiple variations
+
+19. How feature file works
+
+- Describes what to test in plain English
+- Acts as a bridge between business and tech
+- Steps are linked to step definition code
+
+Example:
+Feature: Login
+Scenario: Valid login
+   Given user is on login page
+   When user enters valid credentials
+   Then user should see dashboard
+
+20. What is a feature file in Cucumber
+
+- Text file where tests are written in plain English
+- Helps everyone understand tests
+- Create .feature file, write Feature, Scenarios, Steps, and Examples
+
+Example:
+Feature: Login functionality
+Scenario: Valid login
+   Given user is on login page
+   When user enters username and password
+   Then user should see dashboard
+
+21. Describe a feature file with an example
+
+- A feature file is a plain text file where we write tests in English using Gherkin syntax.
+- Purpose: Helps everyone understand the tests and bridges business & tech teams.
+- Implementation: Create a .feature file, write Feature, Scenario, Steps, and optionally Examples.
+
+Example:
+Feature: Login functionality
+Scenario: Valid login
+   Given user is on login page
+   When user enters username and password
+   Then user should see dashboard
+
+22. What is a scenario in Cucumber
+
+- A scenario is a single test case in a feature file.
+- Purpose: Describes one flow of the application.
+
+Example:
+  Scenario: Valid login
+   Given user is on login page
+   When user enters username and password
+   Then user should see dashboard
+
+23. Difference between a feature and a scenario
+
+- Feature: Represents a functionality or module (e.g., Login)
+- Scenario: Represents one specific test case under that feature (e.g., Valid login, Invalid login)
+  Memory trick: Feature = chapter, Scenario = page in that chapter
+
+24. Describe a step definition file with an example
+
+- Step definition file links steps in the feature file to automation code.
+- Implementation: Write code that matches each Given/When/Then step using annotations.
+
+Example in Java:
+@Given("user is on login page")
+public void userisOnLoginPage() {
+   driver.get("https://example.com/login");
+}
+
+
+25. What is a step definition
+
+- A step definition is a method/code that executes the action described in a step.
+- Purpose: Connects human-readable steps to actual automation code.
+
+26. How to achieve parameterization in Cucumber
+
+- Use <placeholders> in Scenario Outline steps.
+- Provide data in the Examples table.
+- Scenario runs multiple times with different data.
+
+Example:
+Scenario Outline: Login with multiple users
+   Given user is on login page
+   When user enters <username> and <password>
+   Then user should see dashboard
+Examples:
+   | username | password |
+   | user1    | pass1    |
+   | user2    | pass2    |
+
+27. How to pass parameters to a step definition
+
+- Use curly braces in step definition annotations to accept parameters.
+Example in Java:
+@When("user enters {string} and {string}")
+public void enterCredentials(String username, String password) {
+   loginPage.enterUsername(username);
+   loginPage.enterPassword(password);
+}
+
+28. What is a Data Table in Cucumber
+
+- A Data Table is a table in a feature file used to pass multiple sets of data to a step.
+- Purpose: Makes testing with multiple inputs easier.
+Example:
+Given user enters details:
+   | username | password |
+   | user1    | pass1    |
+   | user2    | pass2    |
+
+29. How to perform data-driven testing with Cucumber
+
+- Use Scenario Outline + Examples or Data Tables.
+- Steps are reused for multiple sets of data.
+- Each row of data runs the scenario separately.
+
+30. What is the Cucumber workflow
+
+- Write feature file with scenarios in Gherkin.
+- Create step definitions to implement steps.
+- Run Cucumber runner class.
+- View results in console or report.
+  Memory-friendly workflow: Write → Implement → Run → Verify
+
+31. How do you run and execute tests in Cucumber
+
+- Purpose: To execute the feature file tests using automation code.
+- Implementation:
+  1. Create a Runner class in Java.
+  2. Use @RunWith(Cucumber.class) annotation.
+  3. Add @CucumberOptions to specify feature file location and glue.
+  4. Run the Runner class as JUnit/TestNG.
+
+Example:
+@RunWith(Cucumber.class)
+@CucumberOptions(features="src/test/resources/features", glue="stepDefinitions")
+public class TestRunner {}
+
+32. How do you run only failed test cases in Cucumber
+
+Cucumber Java + Selenium
+Re-run Failed Test Cases
+===========================
+
+STEP 1: Add rerun plugin in TestRunner
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+    features = "src/test/resources/features",
+    glue = {"stepDefinitions"},
+    plugin = {"pretty", "html:target/cucumber-reports.html", "rerun:target/rerun.txt"}
+)
+public class TestRunner {
+}
+
+
+STEP 2: Run tests normally
+Command:
+mvn test
+
+=> Failed scenarios will be saved in target/rerun.txt
+
+Example content of rerun.txt:
+src/test/resources/features/Login.feature:12
+src/test/resources/features/Search.feature:45
+
+
+
+STEP 3: Create Rerun Runner class
+
+import org.junit.runner.RunWith;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+    features = "@target/rerun.txt",
+    glue = {"stepDefinitions"},
+    plugin = {"pretty", "html:target/cucumber-reports-rerun.html"}
+)
+public class RerunFailedScenarios {
+}
+
+
+STEP 4: Run only failed scenarios
+Command:
+mvn test -Dtest=RerunFailedScenarios
+
+
+SUMMARY:
+1. First run: mvn test
+2. Failures are stored in target/rerun.txt
+3. Second run: mvn test -Dtest=RerunFailedScenarios
+   => Runs only the failed test cases
+
+33. How to re-run failed test cases in Cucumber
+
+- Purpose: Automatically re-run tests that failed previously.
+- Implementation:
+  1. Use a plugin to generate rerun.txt during first run.
+  2. Create a new Runner class pointing to rerun.txt.
+
+Example:
+First run: @CucumberOptions(plugin={"rerun:target/rerun.txt"})
+Second run: @CucumberOptions(features="@target/rerun.txt")
+
+34. How do you run only certain group feature files and specific tests (scenarios)
+
+- Purpose: Run only specific tests for faster execution.
+- Implementation:
+  1. Use tags in feature files.
+  2. Specify the tag in @CucumberOptions or command line.
+
+Example:
+Feature file: @Smoke
+@Smoke
+Scenario: Valid login
+Runner: @CucumberOptions(tags="@Smoke")
+
+35. What is a tag in Cucumber
+
+- A tag is a label starting with @ used in feature files.
+- Purpose: To organize and filter scenarios for execution.
+- Example: @Regression, @Smoke, @Login
+
+36. What is the purpose of a Cucumber tag
+- Purpose: 
+  1. Run only selected tests.
+  2. Categorize scenarios (e.g., Smoke, Regression, Critical).
+  3. Skip certain tests temporarily.
+
+ Example: @Smoke to run only smoke tests
+
+37. What does @CucumberOptions do
+- Purpose: Defines options for Cucumber test execution.
+- Implementation: Place it on the Runner class to set features, glue, plugins, tags, etc.
+
+Example:
+@CucumberOptions(
+  features="src/test/resources/features",
+  glue="stepDefinitions",
+  tags="@Smoke",
+  plugin={"pretty","html:target/cucumber.html"}
+)
+
+38. What is @CucumberOptions
+
+- It is an annotation in Cucumber.
+- Purpose: Provides configuration for running tests like paths, tags, and reports.
+- Same as above example.
+
+39. How is the Options tag used in Cucumber
+
+- Purpose: Specify features, glue, plugins, tags, dryRun, monochrome, etc.
+
+Example:
+@CucumberOptions(
+  features="src/test/resources/features",
+  glue="stepDefinitions",
+  plugin={"pretty","json:target/cucumber.json"},
+  tags="@Regression",
+  dryRun=false,
+  monochrome=true
+)
+
+40. Why is the property glue used in the Cucumber Options tag
+
+- Purpose: To tell Cucumber where the step definition files are.
+- Implementation: Add glue="packageName" in @CucumberOptions.
+- Example:
+@CucumberOptions(
+  features="src/test/resources/features",
+  glue="stepDefinitions"
+)
+
+41. What is a TestRunner file? Describe with an example
+
+- Purpose: A TestRunner file is used to run Cucumber feature files. It connects feature files with step definitions and manages test execution.
+- Implementation:
+  1. Create a Java class (e.g., TestRunner.java).
+  2. Annotate with @RunWith(Cucumber.class).
+  3. Use @CucumberOptions to set features, glue, plugins, tags, etc.
+
+Example:
+@RunWith(Cucumber.class)
+@CucumberOptions(
+  features="src/test/resources/features",
+  glue="stepDefinitions",
+  plugin={"pretty","html:target/cucumber.html"},
+  tags="@Smoke"
+)
+public class TestRunner {}
+
+42. What are hooks in Cucumber
+
+- Hooks are blocks of code that run before or after scenarios.
+- Purpose: To set up preconditions (Before) and clean up after tests (After).
+- Example: Logging in before every scenario, closing browser after scenario.
+
+43. What is a hook in Cucumber
+
+- Hook = special method that runs automatically before or after scenarios.
+- Types: @Before, @After, @BeforeStep, @AfterStep
+
+Example:
+@Before
+public void setUp() {
+  System.out.println("Open browser");
+}
+
+@After
+public void tearDown() {
+  System.out.println("Close browser");
+}
+
+44. How do you run a hook only for specific scenarios
+
+- Purpose: Apply hooks only to scenarios with certain tags.
+- Implementation: Add tags attribute in the hook annotation.
+
+Example:
+@Before("@Smoke")
+public void setUpSmoke() {
+  System.out.println("Setup for Smoke test only");
+}
+
+45. How do you change the priority of hooks
+
+- Purpose: Decide which hook runs first if multiple hooks exist.
+- Implementation: Use order parameter in annotation.
+
+Example:
+@Before(order=1)
+public void firstHook() { }
+
+@Before(order=2)
+public void secondHook() { }
+
+46. Why do you need different types of hooks
+
+- Purpose:
+  1. @Before: Run before scenario (setup).
+  2. @After: Run after scenario (cleanup).
+  3. @BeforeStep/@AfterStep: Run before/after each step (detailed control).
+- Helps organize tests and reduces repeated code.
+
+47. How to comment in Cucumber
+
+- Purpose: Ignore lines or notes in feature files.
+- Implementation: Use # at the start of line.
+- Example:
+# This is a comment
+# Scenario: Test login functionality
+
+48. How to use regular expressions in Cucumber
+
+- Purpose: Capture dynamic values from feature file steps.
+- Implementation:
+  1. Use parentheses in step definition regex.
+  2. Pass captured values as method parameters.
+
+Example:
+Feature: 
+  When I enter 50 in calculator
+Step Definition:
+@When("^I enter (\\d+) in calculator$")
+public void enterNumber(int number) {
+  System.out.println("Number: "+number);
+}
+
+49. How to skip tests in Cucumber
+
+- Purpose: Temporarily ignore certain scenarios.
+- Implementation:
+  1. Use tags and exclude them in Runner class OR
+  2. Use @Ignore annotation in scenario (depends on Cucumber version).
+
+Example:
+@Ignore
+Scenario: Test login
+
+50. How to set priority to tests in Cucumber
+
+- Purpose: Control order of scenario execution.
+- Implementation: Cucumber doesn’t support direct scenario priority; use tags and Runner to control execution order.
+
+Example:
+Runner:
+@CucumberOptions(tags="@HighPriority")
+Feature file: @HighPriority Scenario: Important test
+
+51. How to run a precondition test for a scenario in Cucumber
+
+- Purpose: Precondition tests prepare the environment before the main scenario runs.
+- Implementation:
+  1. Use @Before hook for preconditions.
+  2. Apply tags if only certain scenarios need the precondition.
+
+Example:
+@Before("@Login")
+public void preconditionLogin() {
+  System.out.println("Open browser and navigate to login page");
+}
+
+52. How to run a selected test from a group of tests in Cucumber
+
+- Purpose: Run only specific scenarios instead of all tests.
+- Implementation:
+  1. Use tags in feature file (e.g., @Smoke).
+  2. In TestRunner, specify tags in @CucumberOptions.
+
+Example:
+@CucumberOptions(tags="@Smoke")
+public class TestRunner {}
+
+53. Can Cucumber be integrated with Selenium
+
+- Yes, Cucumber can be integrated with Selenium to automate browser testing.
+- Implementation:
+  1. Write Selenium code in step definition files.
+  2. Trigger scenarios from feature files.
+
+Example:
+@When("I click login button")
+public void clickLogin() {
+  driver.findElement(By.id("login")).click();
+}
+
+54. Which language is used in Cucumber
+
+- Cucumber feature files are written in Gherkin language.
+- Gherkin is simple English with keywords like Given, When, Then, And.
+
+55. What programming language does Cucumber use
+
+- Step definitions are written in programming languages like Java, Ruby, Python, or JavaScript depending on project setup.
+
+56. What is a Cucumber feature
+
+- Feature = a functionality or behavior you want to test.
+- Implementation: Feature file describes feature using Scenarios.
+
+Example:
+Feature: Login functionality
+  Scenario: Successful login
+    Given user is on login page
+    When user enters valid credentials
+    Then user is logged in
+
+57. What is a Cucumber plugin
+
+- Plugin = tool that helps generate reports or logs.
+- Example: pretty, html, json.
+- Implementation:
+@CucumberOptions(plugin={"pretty","html:target/cucumber.html"})
+
+58. What is a Cucumber report
+
+- Report = shows results of test execution (pass/fail, scenarios, steps).
+- Example: HTML report generated using plugin.
+
+59. What is a test harness
+
+- Test harness = combination of tools and scripts to run tests automatically.
+- Purpose: Executes test scripts, captures results, and generates reports.
+
+60. What is a dry run and monochrome in Cucumber
+
+- dryRun=true: Checks if every step has step definition without running tests.
+- monochrome=true: Makes console output readable and without extra characters.
+
+Example:
+@CucumberOptions(dryRun=false, monochrome=true)
+
+61. How to generate reports with Cucumber
+- Purpose: Reports show which scenarios passed or failed, making it easy to analyze test results.
+- Implementation:
+  1. Use Cucumber plugins like html, json, or pretty in @CucumberOptions.
+  2. Run your TestRunner class.
+  3. Open the generated report (e.g., target/cucumber.html) in browser.
+
+Example:
+@CucumberOptions(plugin={"pretty","html:target/cucumber-html-report","json:target/cucumber.json"})
+
+62. What is the difference between TestNG and Cucumber
+
+- Purpose: Understanding when to use each tool.
+- Difference:
+  1. Cucumber:
+     - Uses Gherkin syntax (Given, When, Then) for behavior-driven development (BDD).
+     - Focuses on business-readable scenarios.
+     - Requires step definitions in programming language.
+  2. TestNG:
+     - Uses annotations like @Test, @BeforeMethod.
+     - Focuses on unit, integration, or functional testing.
+     - No Gherkin or BDD support directly.
+- Example:
+  - Cucumber: Scenario: User login
+  - TestNG: @Test public void testLogin() { ... }
+
+
+===========================
+Auto Rerun Failed Scenarios
+Cucumber + Selenium + Java + Maven
+===========================
+
+STEP 1: Main Test Runner (TestRunner.java)
+
+import org.junit.runner.RunWith;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+    features = "src/test/resources/features",
+    glue = {"stepDefinitions"},
+    plugin = {"pretty", "html:target/cucumber-reports.html", "rerun:target/rerun.txt"}
+)
+public class TestRunner {
+}
+
+----------------------------------------
+
+STEP 2: Rerun Runner (RerunFailedScenarios.java)
+
+import org.junit.runner.RunWith;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+    features = "@target/rerun.txt",
+    glue = {"stepDefinitions"},
+    plugin = {"pretty", "html:target/cucumber-reports-rerun.html"}
+)
+public class RerunFailedScenarios {
+}
+
+----------------------------------------
+
+STEP 3: Update pom.xml with Maven Surefire plugin
+
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <version>3.0.0</version>
+      <configuration>
+        <includes>
+          <!-- First run all scenarios -->
+          <include>**/TestRunner.java</include>
+          <!-- Then rerun only failures -->
+          <include>**/RerunFailedScenarios.java</include>
+        </includes>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
+
+----------------------------------------
+
+STEP 4: Run tests
+Command:
+mvn test
+
+=> Maven will:
+   1. Run TestRunner (all tests)
+   2. Automatically run RerunFailedScenarios (only failed ones from rerun.txt)
+
+----------------------------------------
+
+NOTES:
+- If no test fails, rerun.txt will be empty, so rerun runner will do nothing.
+- Reports will be generated separately for both runs.
+===========================
+
+
+===========================
+Cucumber + Selenium (Java, Maven)
+Immediate Retry (like TestNG IRetryAnalyzer)
+TXT Notes (copy-ready)
+===========================
+
+GOAL:
+Retry failed Cucumber SCENARIOS automatically during the same run (no manual rerun).
+Uses third-party plugin: cucumber-jvm-retry.
+
+----------------------------------------
+STEP 1: Add dependency (pom.xml)
+
+<dependencies>
+  <!-- your existing test deps ... -->
+
+  <!-- Cucumber scenario retry -->
+  <dependency>
+    <groupId>io.github.prashant-ramcharan</groupId>
+    <artifactId>cucumber-jvm-retry</artifactId>
+    <version>3.0.0</version> <!-- use a stable version -->
+    <scope>test</scope>
+  </dependency>
+</dependencies>
+
+----------------------------------------
+STEP 2: Update your Cucumber Test Runner
+
+import org.junit.runner.RunWith;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+    features = "src/test/resources/features",
+    glue = {"stepDefinitions"},
+    plugin = {
+        "pretty",
+        "html:target/cucumber-report.html",
+        "io.github.prashant_ramcharan.retry.RetryPlugin"   // <-- add this
+    }
+)
+public class TestRunner {
+}
+
+----------------------------------------
+STEP 3: Choose how many retries (command line)
+
+# Retry each FAILED scenario up to 2 times
+mvn test -Dcucumber.retry.count=2
+
+# Examples:
+# 0 = no retry
+# 1 = 1 extra attempt (total at most 2 tries)
+# 2 = 2 extra attempts (total at most 3 tries)
+
+----------------------------------------
+STEP 4: (Optional) Retry only for specific tags
+
+# Only scenarios with @Flaky will be retried
+mvn test -Dcucumber.retry.tags=@Flaky -Dcucumber.retry.count=2
+
+# In your feature file, add @Flaky on scenarios you want retried.
+
+----------------------------------------
+STEP 5: (Optional) Limit max overall failures to stop early
+
+# Stop the run if failures exceed a threshold (example: 5)
+mvn test -Dcucumber.retry.maxfailures=5 -Dcucumber.retry.count=2
+
+----------------------------------------
+STEP 6: (Optional) Keep rerun file too (for CI visibility)
+
+# Add standard rerun plugin alongside retry plugin (in runner):
+plugin = {
+  "pretty",
+  "html:target/cucumber-report.html",
+  "rerun:target/rerun.txt",
+  "io.github.prashant_ramcharan.retry.RetryPlugin"
+}
+
+# Now you have:
+# - Immediate retries during the same run
+# - A rerun.txt listing any scenarios that still failed after retries
+
+----------------------------------------
+HOW IT BEHAVES:
+- A scenario fails → it is re-executed immediately up to N times.
+- If it passes on retry, it is marked passed.
+- If it still fails after N retries, it remains failed (will appear in report and optionally in target/rerun.txt).
+
+----------------------------------------
+TROUBLESHOOTING:
+- Plugin not applied? Verify the fully-qualified plugin name in @CucumberOptions.
+- No retries happening? Ensure you passed -Dcucumber.retry.count>0 in the mvn command.
+- Parallel runs: Works with JUnit parallelization; ensure your WebDriver setup is thread-safe.
+- CI: Use the same mvn flags; archive target reports and (optionally) target/rerun.txt.
+
+----------------------------------------
+ALTERNATIVE (if you cannot add the plugin):
+JUnit Rule (retries JUnit tests, not Cucumber scenarios) — use only if plugin is not allowed.
+
+Create RetryRule.java:
+import org.junit.rules.TestRule;
+import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
+
+public class RetryRule implements TestRule {
+    private final int retryCount;
+    public RetryRule(int retryCount) { this.retryCount = retryCount; }
+
+    @Override
+    public Statement apply(Statement base, Description description) {
+        return new Statement() {
+            @Override public void evaluate() throws Throwable {
+                Throwable last = null;
+                for (int i = 0; i <= retryCount; i++) {
+                    try { base.evaluate(); return; }
+                    catch (Throwable t) { last = t; System.out.println("Retry " + i + " failed: " + description.getDisplayName()); }
+                }
+                throw last;
+            }
+        };
+    }
+}
+
+Use in TestRunner:
+import org.junit.Rule;
+public class TestRunner {
+    @Rule
+    public RetryRule retryRule = new RetryRule(2); // 2 extra attempts
+}
+
+NOTE: This applies at JUnit method level, not per Cucumber scenario. Prefer the cucumber-jvm-retry plugin.
+
+----------------------------------------
+REFERENCE OPTION (two-pass rerun, not immediate):
+- Add plugin "rerun:target/rerun.txt" to TestRunner.
+- First pass: mvn test
+- Second (auto) pass via Surefire includes or separate runner on @target/rerun.txt.
+- This is NOT immediate retry; use only if immediate retry is not required.
+
+===========================
+
+
+

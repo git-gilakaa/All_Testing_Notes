@@ -1,0 +1,78 @@
+Response code validation in post man:
+  pm.test("Response code is 200", function () {
+    pm.response.to.have.status(200);
+   });
+
+For Multiple Status code:
+   pm.test("Successful status code", function () {
+    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);
+});
+
+Headers Validation by post man script:
+ pm.test("headerName is present", function () {
+    pm.response.to.have.header("headerName");
+});
+
+How to Validate the “ value “ of the header?
+pm.test("Content-Type is application/json", () => { 
+pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json'); 
+});
+
+Response Time validation:
+ pm.test("Response time is less than 200ms", function () { 
+pm.expect(pm.response.responseTime).to.be.below(200); 
+}); 
+
+Validate the Data type of the Data in the fields:
+const jsonData = pm.response.json(); 
+pm.test("Test the data type of the response",() =>{ 
+pm.expect(jsonData).to.be.an("object"); 
+pm.expect(jsonData.name).to.be.an("String"); 
+pm.expect(jsonData.id).to.be.an("String"); 
+pm.expect(jsonData.age).to.be.an("number"); 
+pm.expect(jsonData.subjects).to.be.an("Array"); 
+}); 
+
+Validate the Array Properties/Array Content in the fields: 
+Example Json:
+
+{
+  "id": "1",
+  "name": "John Doe",
+  "age": 18,
+  "grade": "12th",
+  "subjects": [
+    "Math",
+    "Physics",
+    "English"
+  ]
+}
+
+const jsonData = pm.response.json(); 
+pm.test("Test the data type of the response",() =>{ 
+pm.expect(jsonData.subjects).to.include("Math"); 
+}); 
+
+Validate a Multiple property in the Array from the response body:
+const jsonData = pm.response.json(); 
+pm.test("Varify the multiple property in the Array ",() =>{ 
+pm.expect(jsonData.subjects).to.have.members(["Math","Physics","English"]); 
+}); 
+
+Validate the Data of the fields are matched/Correct or Not:
+const jsonData = pm.response.json(); 
+pm.test("Test the data type of the response",() =>{ 
+//pm.expect(jsonData).to.be.an("object"); 
+pm.expect(jsonData.name).to.eql("John Doe"); 
+pm.expect(jsonData.id).to.eql("1"); 
+pm.expect(jsonData.age).to.eql(18); 
+pm.expect(jsonData.subjects[0]).to.eql("Math"); 
+pm.expect(jsonData.subjects[1]).to.eql("Physics"); 
+pm.expect(jsonData.subjects[2]).to.eql("English"); 
+});
+
+
+
+
+
+

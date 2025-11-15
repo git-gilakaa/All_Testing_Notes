@@ -1,0 +1,124 @@
+📁 src/test/java/com/bankapi/framework/
+├── BaseTest.java
+├── specs/
+│   ├── RequestSpecFactory.java
+│   └── ResponseSpecFactory.java
+└── tests/
+    └── AccountApiTest.java
+
+======================================================
+
+public class BaseTest {
+    protected static RequestSpecification requestSpec;
+    protected static ResponseSpecification responseSpec;
+
+    @BeforeClass
+    public void setup() {
+        RestAssured.baseURI = "https://api.mockbank.com";
+        RestAssured.basePath = "/v1";
+
+        requestSpec = RequestSpecFactory.buildRequestSpec();
+        responseSpec = ResponseSpecFactory.buildResponseSpec();
+    }
+
+    @AfterClass
+    public void teardown() {
+        RestAssured.reset();
+    }
+}
+
+======================================================
+
+public class RequestSpecFactory {
+    public static RequestSpecification buildRequestSpec() {
+        return new RequestSpecBuilder()
+                .setContentType(ContentType.JSON)
+                .addHeader("Authorization", "Bearer your_token_here")
+                .addHeader("Accept", "application/json")
+                .build();
+    }
+}
+
+========================================================
+
+import static org.hamcrest.Matchers.*;
+
+public class ResponseSpecFactory {
+    public static ResponseSpecification buildResponseSpec() {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(200)
+                .expectContentType(ContentType.JSON)
+                .expectBody("status", equalTo("success"))
+                .build();
+    }
+}
+
+======================================================
+package com.bankapi.framework.tests;
+
+import com.bankapi.framework.BaseTest;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.*;
+
+public class AccountApiTest extends BaseTest {
+
+    @Test(priority = 1)
+    public void testGetAccountDetailsWithQueryAndPathParam() {
+        String accountId = "12345";
+
+        Response response = given()
+                .spec(requestSpec)
+                .pathParam("id", accountId)
+                .queryParam("includeTransactions", "true")
+                .when()
+                .get("/accounts/{id}")
+                .then()
+                .spec(responseSpec)
+                .extract().response();
+
+        JsonPath json = response.jsonPath();
+
+        Assert.assertEquals(json.getString("data.accountId"), accountId);
+        Assert.assertEquals(json.getString("data.currency"), "USD");
+        Assert.assertTrue(json.getDouble("data.balance") > 0);
+        Assert.assertTrue(json.getList("data.transactions").size() > 0);
+    }
+
+    @Test(priority = 2)
+    public void testCreateTransactionWithHeaders() {
+        String payload = """
+        {
+            "fromAccount": "12345",
+            "toAccount": "67890",
+            "amount": 500.00,
+            "currency": "USD",
+            "description": "Salary transfer"
+        }
+        """;
+
+        Response response = given()
+                .spec(requestSpec)
+                .header("X-Request-ID", "REQ-" + System.currentTimeMillis())
+                .body(payload)
+                .when()
+                .post("/transactions")
+                .then()
+                .statusCode(201)
+                .contentType("application/json")
+                .body("status", equalTo("success"))
+                .body("data.transactionId", notNullValue())
+                .extract().response();
+
+        JsonPath json = response.jsonPath();
+
+        Assert.assertEquals(json.getDouble("data.amount"), 500.00);
+        Assert.assertEquals(json.getString("data.currency"), "USD");
+        Assert.assertEquals(json.getString("data.description"), "Salary transfer");
+        Assert.assertNotNull(json.getString("data.transactionId"));
+    }
+}

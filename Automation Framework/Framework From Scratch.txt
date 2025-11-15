@@ -1,0 +1,209 @@
+=================================================================
+COMPLETE NOTES – BUILDING A SELENIUM FRAMEWORK FROM SCRATCH
+(POM + PageFactory + TestNG + Cucumber)
+=================================================================
+
+A) CLIENT INPUTS NEEDED
+------------------------
+1) Product/Feature Scope
+   - Which modules or pages need automation first?
+   - Example: Login, Search, Checkout.
+
+2) Release Timeline
+   - How often do you release? 
+   - What is the first demo deadline?
+
+3) Priority Areas
+   - Which flows are most critical for business?
+   - Example: Payment, Booking, Order Placement.
+
+4) Test Environments
+   - URLs for QA, Stage, UAT, Production.
+   - When are these environments available?
+
+5) Credentials / Test Accounts
+   - Test usernames and passwords.
+   - Accounts with different roles (Admin, User, Guest).
+
+6) Environment Data / Toggles
+   - Any feature flags or country/site variants?
+   - Example: Language, Currency, Region-based features.
+
+7) Network / Access
+   - VPN access, firewall approvals, IP whitelisting.
+
+8) Business / Functional Requirements
+   - BRD, FRD, or user stories with acceptance criteria.
+
+9) UI Information
+   - Wireframes, screen maps, element naming guidelines.
+
+10) API Details (if hybrid framework)
+   - Swagger or OpenAPI docs, endpoint list, payload samples.
+
+11) Existing Test Cases
+   - Manual test cases, high-priority scenarios.
+
+12) Test Data
+   - Data reset process, seed data, masking rules for sensitive data.
+
+13) Browser / Device Matrix
+   - List of browsers, versions, devices that need testing.
+
+14) Source Control Details
+   - Git repository access, branching model.
+
+15) CI/CD Details
+   - Jenkins or GitHub Actions setup, agents, secrets management.
+
+16) Reporting Expectations
+   - Extent/Allure report, email or Slack notification.
+
+17) Defect Process
+   - Tool (Jira, Azure), severity levels, logging rules.
+
+18) Security / Compliance
+   - Rules about handling credentials and PII.
+
+19) Definition of Done
+   - What is considered done for framework delivery?
+   - Example: Smoke suite running in CI with reports.
+
+20) Roles & Responsibilities
+   - Who reviews code, approves merges, maintains test data.
+
+=================================================================
+B) DOCUMENTS TO COLLECT FROM CLIENT
+-----------------------------------
+- BRD/FRD or user stories with acceptance criteria.
+- Wireframes / screen maps.
+- API specification (Swagger/OpenAPI).
+- Test environment URLs and access instructions.
+- Test accounts with roles and permissions.
+- Browser/device support list.
+- Existing manual test cases.
+- Test data rules (masking, reset, seeding).
+- CI/CD setup details (tool, agent OS, vault).
+- Security/compliance guidelines.
+
+=================================================================
+C) DOCUMENTS YOU DELIVER BACK TO CLIENT
+---------------------------------------
+1) Test Strategy
+   - Scope, in-scope/out-of-scope, smoke/regression tags.
+
+2) Automation Design Document
+   - Architecture: POM + PageFactory + TestNG + Cucumber.
+   - Driver management, waits, retries, reporting.
+
+3) Coding Standards Guide
+   - Naming rules, PageObject structure, locator strategy.
+
+4) Environment & Config Guide
+   - config.properties usage, environment switching.
+
+5) Runbook / CI Guide
+   - How to run locally, in Jenkins, scheduling runs.
+
+6) Reporting Guide
+   - Extent/Allure reports, screenshots, logs.
+
+7) Traceability Matrix (optional)
+   - Story → Scenario → Test → Report.
+
+8) Onboarding README
+   - 10-minute setup, prerequisites, common issues.
+
+=================================================================
+D) FRAMEWORK BUILD STEPS
+------------------------
+1) Setup Project
+   - Create Maven project, add dependencies:
+     Selenium, TestNG, Cucumber, Extent Reports, WebDriver Manager.
+
+2) Create Base Structure
+   - src/test/java
+       - base (DriverManager, TestBase)
+       - pages (PageObjects using PageFactory)
+       - tests (TestNG/Cucumber test classes)
+       - utils (WaitUtils, ScreenshotUtils, Logger)
+       - reports (Extent setup)
+       - features (Cucumber .feature files)
+       - stepdefinitions (Cucumber StepDefs)
+
+3) Config Management
+   - Add config.properties (URL, browser, timeout).
+   - Create ConfigReader utility.
+
+4) Driver Setup
+   - Use WebDriverManager to handle drivers.
+   - Implement ThreadLocal WebDriver for parallel tests.
+
+5) Page Object Model with PageFactory
+   - Each page has its own class.
+   - Define @FindBy locators and methods.
+
+6) TestNG + Cucumber Setup
+   - Write feature files (Given/When/Then).
+   - Map Step Definitions to PageObjects.
+   - Create TestNG runner class.
+
+7) Screenshot Utility
+   - Capture screenshots on failure.
+   - Add code in Listener (ITestListener) + attach to report.
+
+8) Extent Reports
+   - Initialize report in BeforeSuite.
+   - Log pass/fail/skip with screenshots.
+
+9) Retry Analyzer
+   - Implement IRetryAnalyzer for rerunning failed tests.
+
+10) Parallel Execution
+   - Configure testng.xml for parallel=“methods”.
+   - Ensure DriverManager is thread-safe.
+
+11) Jenkins CI/CD Integration
+   - Create Jenkins pipeline.
+   - Pull code from Git, run tests, generate reports.
+   - Send email/Slack notification with report.
+
+=================================================================
+E) BENEFITS OF THIS FRAMEWORK
+------------------------------
+- Reusable PageObjects (clean separation of logic).
+- Centralized config and utilities.
+- Automatic screenshots on failure.
+- Extent/Allure reports with detailed results.
+- Parallel + cross-browser execution.
+- CI/CD ready (nightly regression, smoke on PR).
+- Easy onboarding with README and setup guide.
+- Scalable for future modules.
+
+=================================================================
+F) SAMPLE CLIENT KICKOFF QUESTIONS
+----------------------------------
+1) Which modules are top priority for automation?
+2) What environment should we run nightly (QA/Stage)?
+3) Provide 3 test accounts (admin, user, guest).
+4) Any OTP/2FA bypass for test environment?
+5) Which Git repo should we use?
+6) CI tool details (Jenkins/GitHub Actions).
+7) Who should receive test reports (email/Slack)?
+8) Any PII/security constraints for logs and screenshots?
+9) Browser/device list for initial scope?
+10) Definition of Done for framework (Smoke in CI with reports)?
+
+=================================================================
+SUMMARY
+-------
+1) Collect client inputs (scope, env, accounts, test cases, browsers).
+2) Collect documents (BRD, wireframes, APIs, data rules).
+3) Deliver automation documents (Strategy, Design, Runbook).
+4) Build framework step by step (POM + PageFactory + TestNG + Cucumber).
+5) Add utilities (screenshots, waits, logger, retries).
+6) Add reporting (Extent).
+7) Integrate CI/CD (Jenkins).
+8) Run Smoke on PR, Regression nightly.
+9) Deliver reports + traceability + demo.
+10) Framework is now scalable and client-ready.
