@@ -1,4 +1,4 @@
-For PR Testing
+For PR Testing purpose only
 
 1 - Git Upload: First-Time Setup & Push
 =======================================
