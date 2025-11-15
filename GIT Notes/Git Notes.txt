@@ -70,6 +70,4 @@ Step 6: Push the updated master branch to GitHub
   → Uploads the merged changes to the master branch on GitHub.
 
 
-✅ Done! Your local branch changes are now part of the master branch on GitHub.
-
 
