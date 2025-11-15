@@ -35,10 +35,10 @@ Done! Your project is now live on GitHub.
 Git Upload: Merging Local Branch to Master
 ==========================================
 
-Step 1: Ensure you're in your local branch
+Step 1: Confirm you're in your local branch
 - Run:
   git branch
-  → Confirms your current branch (marked with *). Make sure you're in the correct one.
+  → Shows all branches. The current branch is marked with an asterisk (*).
 
 Step 2: Stage and commit your changes
 - Run:
@@ -47,22 +47,28 @@ Step 2: Stage and commit your changes
 
 - Run:
   git commit -m "Your commit message here"
-  → Saves the staged changes to your local branch history.
+  → Saves the staged changes to your local branch.
 
-Step 3: Switch to the master branch
+Step 3: Push your local branch to GitHub (optional but recommended)
+- Run:
+  git push origin your-local-branch-name
+  → Example: git push origin GIT_NOTES
+
+Step 4: Switch to the master branch
 - Run:
   git checkout master
-  → Moves you to the master branch.
+  → Switches you to the master branch.
 
-Step 4: Merge your local branch into master
+Step 5: Merge your local branch into master
 - Run:
   git merge your-local-branch-name
-  → Replace with your actual branch name (e.g., feature-api-tests).
+  → Example: git merge GIT_NOTES
 
-Step 5: Push the master branch to GitHub
+Step 6: Push the updated master branch to GitHub
 - Run:
   git push origin master
   → Uploads the merged changes to the master branch on GitHub.
 
-Done! Your local branch changes are now live in the master branch of your GitHub repository.
+✅ Done! Your local branch changes are now part of the master branch on GitHub.
+
 
