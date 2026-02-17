@@ -122,3 +122,5 @@ public class AccountApiTest extends BaseTest {
         Assert.assertNotNull(json.getString("data.transactionId"));
     }
 }
+
+completed
