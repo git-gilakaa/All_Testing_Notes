@@ -1,0 +1,206 @@
+TESTNG CONCEPTS – SIMPLE NOTES (INTERVIEW READY)
+
+=================================================
+
+1. PARALLEL EXECUTION
+
+Parallel execution allows running multiple test cases at the same time to reduce execution time.
+
+Key points:
+
+* Enabled using testng.xml
+* Each test must have its own WebDriver instance
+* Common modes: methods, classes, tests
+
+Example (testng.xml):
+parallel = methods
+thread-count = 2
+
+=================================================
+
+2. CROSS-BROWSER TESTING
+
+Cross-browser testing runs the same test on multiple browsers like Chrome and Firefox.
+
+How it works:
+
+* Browser name is passed from testng.xml
+* WebDriver is initialized based on browser value
+
+Used to ensure application works across different browsers.
+
+=================================================
+
+3. TESTNG GROUPS
+
+Groups are used to categorize test cases such as smoke, regression, sanity.
+
+Key points:
+
+* Defined using @Test(groups = "groupName")
+* One test can belong to multiple groups
+* Groups are controlled from testng.xml
+
+Example groups:
+
+* smoke
+* regression
+
+=================================================
+
+4. INCLUDE AND EXCLUDE TEST METHODS
+
+Used to control which test methods should run without changing code.
+
+Include:
+
+* Runs only specified methods
+
+Exclude:
+
+* Skips specified methods
+
+Configured in testng.xml at class level.
+
+=================================================
+
+5. DEPENDS ON METHODS
+
+Used when one test depends on the successful execution of another test.
+
+Key points:
+
+* Defined using dependsOnMethods
+* If parent test fails, dependent test is skipped
+* Used to control execution flow
+
+Example flow:
+Login → Search → Logout
+
+=================================================
+
+6. DEPENDS ON GROUPS
+
+Used when a test depends on the execution of a group of tests.
+
+Key points:
+
+* Defined using dependsOnGroups
+* Test runs only after all tests in the group pass
+
+=================================================
+
+7. IMPORTANT INTERVIEW NOTES
+
+* Do not use static WebDriver in parallel execution
+* Avoid circular dependencies
+* Prefer groups over hard dependencies when possible
+* Control execution using testng.xml instead of code changes
+
+=================================================
+
+================ CODE EXAMPLES =================
+
+A. PARALLEL EXECUTION – SAMPLE CODE
+
+Test Class:
+
+@Test
+public void testOne() {
+System.out.println("Test One");
+}
+
+@Test
+public void testTwo() {
+System.out.println("Test Two");
+}
+
+Key point: Execution is controlled from testng.xml using parallel and thread-count.
+
+---
+
+B. CROSS-BROWSER TESTING – SAMPLE CODE
+
+@Test
+@Parameters("browser")
+public void launchBrowser(String browser) {
+if (browser.equalsIgnoreCase("chrome")) {
+driver = new ChromeDriver();
+} else if (browser.equalsIgnoreCase("firefox")) {
+driver = new FirefoxDriver();
+}
+}
+
+Key point: Browser value is passed from testng.xml.
+
+---
+
+C. GROUPS – SAMPLE CODE
+
+@Test(groups = "smoke")
+public void loginTest() {
+System.out.println("Login Test");
+}
+
+@Test(groups = "regression")
+public void paymentTest() {
+System.out.println("Payment Test");
+}
+
+---
+
+D. INCLUDE & EXCLUDE – SAMPLE CODE
+
+Include Example (testng.xml):
+
+* loginTest
+* logoutTest
+
+Exclude Example (testng.xml):
+
+* paymentTest
+
+---
+
+E. DEPENDS ON METHODS – SAMPLE CODE
+
+@Test
+public void loginTest() {
+System.out.println("Login successful");
+}
+
+@Test(dependsOnMethods = "loginTest")
+public void searchTest() {
+System.out.println("Search successful");
+}
+
+@Test(dependsOnMethods = "searchTest")
+public void logoutTest() {
+System.out.println("Logout successful");
+}
+
+---
+
+F. DEPENDS ON GROUPS – SAMPLE CODE
+
+@Test(groups = "login")
+public void login() {
+System.out.println("Login done");
+}
+
+@Test(dependsOnGroups = "login")
+public void dashboard() {
+System.out.println("Dashboard validated");
+}
+
+---
+
+INTERVIEW ANSWER TIP
+
+If asked to explain:
+"TestNG helps control test execution using groups, dependencies, parallel execution, and XML configuration without changing code."
+
+===============================================
+
+Completed
+
