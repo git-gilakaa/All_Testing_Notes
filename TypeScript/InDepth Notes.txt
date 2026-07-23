@@ -1,0 +1,242 @@
+Type script Notes:
+==================
+
+tsconfig.json in Playwright
+
+What is tsconfig.json?
+tsconfig.json is a configuration file for TypeScript. It tells TypeScript how to compile your code into JavaScript.
+
+Why it is used in Playwright?
+Playwright supports TypeScript. This file helps control how your test files are written, checked, and converted.
+
+Main Uses:
+
+1. Controls Compilation
+   It tells TypeScript how to convert .ts files into .js files.
+
+2. Sets Target Version
+   You can define which JavaScript version you want (example: ES6, ES2020).
+
+3. Manages File Structure
+   You can define:
+
+* Which files to include
+* Which files to ignore
+
+4. Enables Strict Checking
+   It helps catch errors early like:
+
+* Wrong data types
+* Missing variables
+
+5. Supports Module System
+   It defines how imports/exports work in your project.
+
+6. Improves Code Quality
+   It enforces rules so your code is clean and consistent.
+
+Simple Example:
+
+{
+"compilerOptions": {
+"target": "ES6",
+"module": "commonjs",
+"strict": true,
+"outDir": "./dist"
+},
+"include": ["tests/**/*.ts"]
+}
+
+Key Points to Remember:
+
+* Required for TypeScript projects
+* Helps avoid errors before running tests
+* Makes Playwright tests more stable
+* Controls how code is compiled and structured
+
+In one line:
+tsconfig.json controls how your TypeScript code behaves and gets converted into JavaScript.
+
+
+
+===============================================================
+
+Full Command:
+npx ts-node Variables-1.ts
+
+What is npx?
+
+npx is a tool that comes with Node.js.
+
+It is used to run packages without installing them globally.
+
+Meaning:
+
+It finds the package (ts-node)
+Runs it directly
+
+You don’t need to install ts-node globally if you use npx.
+
+What is ts-node?
+
+ts-node is a tool that runs TypeScript files directly.
+
+Normally:
+TypeScript → Compile → JavaScript → Run
+
+But ts-node does this in one step:
+TypeScript → Run directly
+
+So no need to manually use tsc + node.
+
+What is Variables-1.ts?
+
+This is your TypeScript file.
+
+It contains your code:
+let name1: string = "Mahendra Singh Doni";
+console.log(name1);
+
+==================================================================
+
+TypeScript Data Types (Clear Use + When to Use)
+
+1. number
+   What: Stores numeric values
+   Main use: Calculations, counts
+   When to use: Age, price, length, counters
+
+Example:
+let price: number = 500;
+
+2. string
+   What: Stores text
+   Main use: Names, messages, URLs
+   When to use: Any text data
+
+Example:
+let name: string = "Ravi";
+
+3. boolean
+   What: true or false
+   Main use: Conditions, flags
+   When to use: Status check (login, success, failure)
+
+Example:
+let isLogin: boolean = true;
+
+4. null
+   What: Empty value (intentional)
+   Main use: Reset or no data
+   When to use: When value is purposely empty
+
+Example:
+let data: null = null;
+
+5. undefined
+   What: Variable declared but not assigned
+   Main use: Default state
+   When to use: When value is not yet set
+
+Example:
+let value: undefined = undefined;
+
+6. any
+   What: Can store any type
+   Main use: Quick coding (not safe)
+   When to use: Avoid if possible, only when type is unknown
+
+Example:
+let x: any = 10;
+x = "hello";
+
+7. unknown
+   What: Safer version of any
+   Main use: When type is not known yet
+   When to use: API response, dynamic data
+
+Example:
+let input: unknown = "test";
+
+8. void
+   What: No return value
+   Main use: Functions that don’t return anything
+   When to use: Logging, actions
+
+Example:
+function log(): void {
+console.log("Hi");
+}
+
+9. array
+   What: Multiple values
+   Main use: Lists of data
+   When to use: Users, items, test data
+
+Example:
+let users: string[] = ["A", "B"];
+
+10. tuple
+    What: Fixed values with types
+    Main use: Structured data
+    When to use: Known format (name + age, status + code)
+
+Example:
+let user: [string, number] = ["Ravi", 25];
+
+11. enum
+    What: Set of fixed values
+    Main use: Status, roles
+    When to use: Limited options (PASS/FAIL, ADMIN/USER)
+
+Example:
+enum Status {
+Success,
+Failure
+}
+
+12. object
+    What: Key-value data
+    Main use: Complex data
+    When to use: User details, API data
+
+Example:
+let person: object = { name: "Ravi" };
+
+13. never
+    What: Never returns
+    Main use: Errors or infinite loops
+    When to use: Functions that always throw error
+
+Example:
+function error(): never {
+throw new Error("Error");
+}
+
+14. union type
+    What: Multiple possible types
+    Main use: Flexible variables
+    When to use: Value can be different types
+
+Example:
+let id: number | string = 101;
+
+15. literal type
+    What: Fixed exact values
+    Main use: Strict control
+    When to use: Only allow specific values
+
+Example:
+let direction: "left" | "right";
+
+Key Insight:
+
+* Use strict types (string, number, boolean) for safety
+* Use union when value can change type
+* Avoid any unless absolutely needed
+* Use enum and literal for controlled values
+
+One-line summary:
+Each TypeScript type controls how data is stored and used, and choosing the right type prevents bugs.
+
+

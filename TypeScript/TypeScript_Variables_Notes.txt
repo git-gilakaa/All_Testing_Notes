@@ -1,0 +1,1107 @@
+TypeScript
+==========
+
+What is TypeScript?
+
+TypeScript is an open-source programming language developed by Microsoft.
+
+It is a superset of JavaScript, which means it includes all JavaScript features and adds extra features like static typing.
+
+==================================================================
+
+Why do we use TypeScript?
+
+TypeScript helps developers write better and error-free code.
+
+It checks errors during development before running the application.
+
+==================================================================
+
+Main Uses
+
+1. Static Typing
+   Helps define the type of variables, functions, and objects.
+
+2. Error Detection
+   Finds errors during coding instead of at runtime.
+
+3. Better Code Completion
+   Provides intelligent suggestions and auto-completion in editors like VS Code.
+
+4. Easy Maintenance
+   Makes large applications easier to understand and maintain.
+
+5. Object-Oriented Programming
+   Supports classes, interfaces, inheritance, and other OOP concepts.
+
+==================================================================
+
+Simple Example
+
+JavaScript:
+
+let name = "Ravi";
+
+TypeScript:
+
+let name: string = "Ravi";
+
+Here, "string" specifies that the variable can store only text values.
+
+==================================================================
+
+Why TypeScript in Playwright?
+
+Playwright supports TypeScript.
+
+Using TypeScript provides:
+
+* Better code suggestions
+* Type safety
+* Fewer coding errors
+* Easier debugging
+* Improved code readability
+
+==================================================================
+
+Advantages
+
+* Detects errors early
+* Improves code quality
+* Supports modern JavaScript features
+* Easy to maintain
+* Best suited for large projects
+
+==============================================================
+
+Installing TypeScript and Playwright
+====================================
+
+Prerequisites
+
+Before installing TypeScript and Playwright, install:
+
+* Node.js
+* Visual Studio Code
+
+Download Node.js:
+https://nodejs.org
+
+Download VS Code:
+https://code.visualstudio.com
+
+==================================================================
+
+Step 1: Verify Node.js Installation
+
+Open Command Prompt or VS Code Terminal.
+
+Run:
+
+node -v
+
+Output Example:
+
+v22.18.0
+
+Check npm version:
+
+npm -v
+
+Output Example:
+
+10.9.3
+
+If both commands display versions, Node.js is installed successfully.
+
+==================================================================
+
+Step 2: Create a Project Folder
+
+Example:
+
+Playwright_Project
+
+Open this folder in VS Code.
+
+==================================================================
+
+Step 3: Initialize Node Project
+
+Open Terminal.
+
+Run:
+
+npm init -y
+
+What does it do?
+
+Creates a package.json file.
+
+Why is it used?
+
+It manages all project dependencies.
+
+==================================================================
+
+Step 4: Install TypeScript
+
+Run:
+
+npm install -D typescript
+
+What does it do?
+
+Installs TypeScript in your project.
+
+Check version:
+
+npx tsc -v
+
+Output Example:
+
+Version 5.9.2
+
+==================================================================
+
+Step 5: Create tsconfig.json
+
+Run:
+
+npx tsc --init
+
+What does it do?
+
+Creates tsconfig.json.
+
+Why is it used?
+
+It controls how TypeScript code is compiled into JavaScript.
+
+==================================================================
+
+Step 6: Install ts-node (Optional but Recommended)
+
+Run:
+
+npm install -D ts-node
+
+What does it do?
+
+Runs TypeScript files directly without converting them into JavaScript.
+
+Example:
+
+npx ts-node Variables-1.ts
+
+==================================================================
+
+Step 7: Install Playwright
+
+Run:
+
+npm init playwright@latest
+
+What does it do?
+
+Installs Playwright and creates the project structure.
+
+It also installs:
+
+* Playwright
+* Playwright Test
+* Browser binaries
+* Example test files
+
+==================================================================
+
+Step 8: Select Installation Options
+
+During installation, answer the questions.
+
+Example:
+
+✔ TypeScript or JavaScript?
+Choose: TypeScript
+
+✔ Where to put your tests?
+tests
+
+✔ Add GitHub Actions?
+No (or Yes if needed)
+
+✔ Install Playwright browsers?
+Yes
+
+==================================================================
+
+Step 9: Verify Playwright Installation
+
+Run:
+
+npx playwright --version
+
+Output Example:
+
+Version 1.54.2
+
+==================================================================
+
+Step 10: Run Sample Test
+
+Run:
+
+npx playwright test
+
+What does it do?
+
+Executes all Playwright test files.
+
+==================================================================
+
+Step 11: Run Specific Test
+
+Run:
+
+npx playwright test tests/example.spec.ts
+
+Runs only the specified test file.
+
+==================================================================
+
+Step 12: Open HTML Report
+
+Run:
+
+npx playwright show-report
+
+Opens the Playwright execution report in the browser.
+
+==================================================================
+
+Project Structure
+
+Playwright_Project
+
+│
+├── node_modules
+├── tests
+├── playwright.config.ts
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+
+==================================================================
+
+Common Commands
+
+Check Node Version
+
+node -v
+
+Check npm Version
+
+npm -v
+
+Initialize Project
+
+npm init -y
+
+Install TypeScript
+
+npm install -D typescript
+
+Check TypeScript Version
+
+npx tsc -v
+
+Create tsconfig.json
+
+npx tsc --init
+
+Install ts-node
+
+npm install -D ts-node
+
+Run TypeScript File
+
+npx ts-node Variables-1.ts
+
+Install Playwright
+
+npm init playwright@latest
+
+Run Tests
+
+npx playwright test
+
+Run Single Test
+
+npx playwright test tests/example.spec.ts
+
+View HTML Report
+
+npx playwright show-report
+
+==========================================================
+
+TypeScript Variables
+
+What is a Variable?
+
+A variable is a named container used to store data.
+
+It allows us to store values such as numbers, text, and boolean values
+so they can be used later in the program.
+
+Simple Example:
+
+let name: string = “Ravindra”;
+
+Here,
+
+-   let → Keyword used to declare a variable.
+-   name → Variable name.
+-   string → Data type.
+-   “Ravindra” → Value stored in the variable.
+
+==================================================================
+
+Why do we use Variables?
+
+Variables help us:
+
+-   Store data
+-   Reuse data multiple times
+-   Update values whenever needed
+-   Make the code easy to read and maintain
+
+Without variables, we would have to write the same value repeatedly.
+
+==================================================================
+
+When to use Variables?
+
+Use variables whenever you need to store:
+
+-   Username
+-   Password
+-   URL
+-   Price
+-   Age
+-   Login Status
+-   API Response
+-   Test Data
+
+Example:
+
+let username = “admin”; let password = “admin123”;
+
+==================================================================
+
+Syntax
+
+keyword variableName: dataType = value;
+
+Example:
+
+let city: string = “Hyderabad”;
+
+==================================================================
+
+Types of Variables
+
+TypeScript provides three keywords to declare variables.
+
+1.  let
+
+What is it?
+
+let declares a variable whose value can be changed later.
+
+When to use?
+
+Use let whenever the value may change.
+
+Example:
+
+let age: number = 25; age = 30;
+
+console.log(age);
+
+Output: 30
+
+==================================================================
+
+2.  const
+
+What is it?
+
+const declares a constant.
+
+Its value cannot be changed after declaration.
+
+When to use?
+
+Use const for values that never change.
+
+Example:
+
+const country: string = “India”;
+
+console.log(country);
+
+Wrong Example:
+
+const country = “India”; country = “USA”;
+
+Output: Error
+
+Reason: const variables cannot be reassigned.
+
+==================================================================
+
+3.  var
+
+What is it?
+
+var is the old way of declaring variables in JavaScript.
+
+TypeScript still supports it but it is not recommended.
+
+Why not use var?
+
+-   Function scoped
+-   Can create unexpected bugs
+-   Less secure than let and const
+
+Example:
+
+var name = “Ravi”;
+
+name = “Kumar”;
+
+console.log(name);
+
+Output: Kumar
+
+==================================================================
+
+Difference between let, const and var
+
+let * Value can change * Block scoped * Recommended
+
+const * Value cannot change * Block scoped * Recommended
+
+var * Value can change * Function scoped * Not recommended
+
+==================================================================
+
+Variable Naming Rules
+
+Correct
+
+let userName = “Ravi”; let firstName = “Ram”; let student1 = “Raju”;
+
+Wrong
+
+let 1name = “Ravi”; let user-name = “Ravi”; let let = “Hello”;
+
+Reason
+
+-   Variable cannot start with a number.
+-   Variable cannot contain ‘-’ (hyphen).
+-   Reserved keywords cannot be used as variable names.
+
+==================================================================
+
+Variable Naming Best Practices
+
+Good
+
+let totalPrice = 1000; let employeeName = “Ravi”;
+
+Bad
+
+let a = 1000; let x = “Ravi”;
+
+==================================================================
+
+Playwright Example
+
+const baseURL = “https://demo.playwright.dev”; const username = “admin”;
+const password = “admin123”;
+
+Here,
+
+-   baseURL stores application URL.
+-   username stores login username.
+-   password stores login password.
+
+==================================================================
+
+tsconfig.json in Playwright
+
+What is tsconfig.json?
+tsconfig.json is a configuration file for TypeScript. It tells TypeScript how to compile your code into JavaScript.
+
+Why it is used in Playwright?
+Playwright supports TypeScript. This file helps control how your test files are written, checked, and converted.
+
+Main Uses:
+
+1. Controls Compilation
+   It tells TypeScript how to convert .ts files into .js files.
+
+2. Sets Target Version
+   You can define which JavaScript version you want (example: ES6, ES2020).
+
+3. Manages File Structure
+   You can define:
+
+* Which files to include
+* Which files to ignore
+
+4. Enables Strict Checking
+   It helps catch errors early like:
+
+* Wrong data types
+* Missing variables
+
+5. Supports Module System
+   It defines how imports/exports work in your project.
+
+6. Improves Code Quality
+   It enforces rules so your code is clean and consistent.
+
+Simple Example:
+
+{
+"compilerOptions": {
+"target": "ES6",
+"module": "commonjs",
+"strict": true,
+"outDir": "./dist"
+},
+"include": ["tests/**/*.ts"]
+}
+
+Key Points to Remember:
+
+* Required for TypeScript projects
+* Helps avoid errors before running tests
+* Makes Playwright tests more stable
+* Controls how code is compiled and structured
+
+In one line:
+tsconfig.json controls how your TypeScript code behaves and gets converted into JavaScript.
+
+===============================================================
+
+Full Command:
+npx ts-node Variables-1.ts
+
+What is npx?
+
+npx is a tool that comes with Node.js.
+
+It is used to run packages without installing them globally.
+
+Meaning:
+
+It finds the package (ts-node)
+Runs it directly
+
+You don’t need to install ts-node globally if you use npx.
+
+What is ts-node?
+
+ts-node is a tool that runs TypeScript files directly.
+
+Normally:
+TypeScript → Compile → JavaScript → Run
+
+But ts-node does this in one step:
+TypeScript → Run directly
+
+So no need to manually use tsc + node.
+
+What is Variables-1.ts?
+
+This is your TypeScript file.
+
+It contains your code:
+let name1: string = "Mahendra Singh Doni";
+console.log(name1);
+
+==================================================================
+
+TypeScript Data Types (Clear Use + When to Use)
+
+1. number
+   What: Stores numeric values
+   Main use: Calculations, counts
+   When to use: Age, price, length, counters
+
+Example:
+let price: number = 500;
+
+2. string
+   What: Stores text
+   Main use: Names, messages, URLs
+   When to use: Any text data
+
+Example:
+let name: string = "Ravi";
+
+3. boolean
+   What: true or false
+   Main use: Conditions, flags
+   When to use: Status check (login, success, failure)
+
+Example:
+let isLogin: boolean = true;
+
+4. null
+   What: Empty value (intentional)
+   Main use: Reset or no data
+   When to use: When value is purposely empty
+
+Example:
+let data: null = null;
+
+5. undefined
+   What: Variable declared but not assigned
+   Main use: Default state
+   When to use: When value is not yet set
+
+Example:
+let value: undefined = undefined;
+
+6. any
+   What: Can store any type
+   Main use: Quick coding (not safe)
+   When to use: Avoid if possible, only when type is unknown
+
+Example:
+let x: any = 10;
+x = "hello";
+
+7. unknown
+   What: Safer version of any
+   Main use: When type is not known yet
+   When to use: API response, dynamic data
+
+Example:
+let input: unknown = "test";
+
+8. void
+   What: No return value
+   Main use: Functions that don’t return anything
+   When to use: Logging, actions
+
+Example:
+function log(): void {
+console.log("Hi");
+}
+
+9. array
+   What: Multiple values
+   Main use: Lists of data
+   When to use: Users, items, test data
+
+Example:
+let users: string[] = ["A", "B"];
+
+10. tuple
+    What: Fixed values with types
+    Main use: Structured data
+    When to use: Known format (name + age, status + code)
+
+Example:
+let user: [string, number] = ["Ravi", 25];
+
+11. enum
+    What: Set of fixed values
+    Main use: Status, roles
+    When to use: Limited options (PASS/FAIL, ADMIN/USER)
+
+Example:
+enum Status {
+Success,
+Failure
+}
+
+12. object
+    What: Key-value data
+    Main use: Complex data
+    When to use: User details, API data
+
+Example:
+let person: object = { name: "Ravi" };
+
+13. never
+    What: Never returns
+    Main use: Errors or infinite loops
+    When to use: Functions that always throw error
+
+Example:
+function error(): never {
+throw new Error("Error");
+}
+
+14. union type
+    What: Multiple possible types
+    Main use: Flexible variables
+    When to use: Value can be different types
+
+Example:
+let id: number | string = 101;
+
+15. literal type
+    What: Fixed exact values
+    Main use: Strict control
+    When to use: Only allow specific values
+
+Example:
+let direction: "left" | "right";
+
+Key Insight:
+
+* Use strict types (string, number, boolean) for safety
+* Use union when value can change type
+* Avoid any unless absolutely needed
+* Use enum and literal for controlled values
+
+One-line summary:
+Each TypeScript type controls how data is stored and used, and choosing the right type prevents bugs.
+
+====================================================================================================
+
+Type Inference in TypeScript
+
+What is it:
+Type inference means TypeScript automatically understands the type of a variable from the value you assign.
+You don’t need to write the type manually.
+
+Main use:
+To reduce extra code and make writing faster
+
+
+Simple example:
+
+const name = "Ravi";
+
+What TypeScript understands internally:
+const name: string = "Ravi";
+
+You did not write string, but TypeScript figured it out.
+
+
+When to use (important):
+
+1. When value is already given
+
+Example:
+let count = 10;   // TypeScript knows it's number
+
+
+2. When NOT to use (must write type)
+
+Case 1: Function return
+
+function getTimeout(): number {
+return 30000;
+}
+
+Why:
+Return type should be clear
+
+
+Case 2: Empty variable
+
+let message: string;
+message = "Login failed";
+
+Why:
+No value at start → TypeScript cannot guess
+
+Playwright example:
+
+const baseURL = "https://testsite.com";
+
+TypeScript understands:
+baseURL is string → no need to write type
+
+Key points:
+
+* TypeScript auto-detects type from value
+* Reduces unnecessary typing
+* Use explicit type when value is not clear
+* Very useful in real projects
+
+One-line summary:
+Type inference lets TypeScript automatically detect variable types without writing them manually.
+
+============================================================================================
+
+Functions in TypeScript (Syntax + Use + When to Use)
+
+1. Normal Function
+
+Syntax:
+function functionName(param: type): returnType {
+// code
+}
+
+Use:
+Reusable logic
+
+When to use:
+When you need clear, readable functions
+
+Example:
+function add(a: number, b: number): number {
+return a + b;
+}
+
+2. Function Without Return (void)
+
+Syntax:
+function functionName(): void {
+// code
+}
+
+Use:
+Perform action without returning value
+
+When to use:
+Logging, Playwright steps, clicking buttons
+
+Example:
+function printMsg(): void {
+console.log("Hello");
+}
+
+3. Arrow Function
+
+Syntax:
+const functionName = (param: type): returnType => {
+// code
+};
+
+Use:
+Short and modern function writing
+
+When to use:
+Callbacks, async functions, Playwright code
+
+Example:
+const add = (a: number, b: number): number => {
+return a + b;
+};
+
+4. Arrow Function (Short Return)
+
+Syntax:
+const functionName = (param: type): returnType => expression;
+
+Use:
+Single line logic
+
+When to use:
+Simple calculations or returns
+
+Example:
+const add = (a: number, b: number): number => a + b;
+
+5. Function with Default Parameters
+
+Syntax:
+function functionName(param: type = value): returnType {
+// code
+}
+
+Use:
+Provide default value
+
+When to use:
+When input may or may not be given
+
+Example:
+function greet(name: string = "Guest"): string {
+return "Hello " + name;
+}
+
+6. Optional Parameters
+
+Syntax:
+function functionName(param?: type): returnType {
+// code
+}
+
+Use:
+Flexible input
+
+When to use:
+When parameter is not mandatory
+
+Example:
+function greet(name?: string): void {
+console.log(name);
+}
+
+7. Rest Parameters
+
+Syntax:
+function functionName(...param: type[]): returnType {
+// code
+}
+
+Use:
+Handle multiple values
+
+When to use:
+Unknown number of inputs
+
+Example:
+function sum(...numbers: number[]): number {
+return numbers.reduce((a, b) => a + b);
+}
+
+8. Anonymous Function
+
+Syntax:
+const variableName = function(param: type): returnType {
+// code
+};
+
+Use:
+Function without name
+
+When to use:
+Inside variables, callbacks
+
+Example:
+const msg = function(): void {
+console.log("Hi");
+};
+
+Key Points:
+
+* Use normal functions for clarity
+* Use arrow functions in modern code
+* Use void when no return needed
+* Use default/optional for flexibility
+* Use rest for multiple inputs
+
+One-line summary:
+Each function type has a specific use, and choosing the right one improves code quality and readability.
+
+====================================================================================
+Object Concept in TypeScript (What You Learned vs What’s Left)
+
+What you completed:
+
+* Creating object
+* Key-value pairs
+* Access using dot (user.name)
+
+This is only beginner level.
+
+What is still pending (important topics):
+
+1. Object Type Annotation
+
+Example:
+let user: { name: string; age: number } = {
+name: "Ravi",
+age: 25
+};
+
+Use:
+Defines structure explicitly
+
+2. Interface with Object
+
+Example:
+interface User {
+name: string;
+age: number;
+}
+
+let user: User = {
+name: "Ravi",
+age: 25
+};
+
+Use:
+Reusable object structure
+
+3. Optional Properties
+
+Example:
+interface User {
+name: string;
+age?: number;
+}
+
+Use:
+Property may or may not exist
+
+4. Nested Objects
+
+Example:
+const user = {
+name: "Ravi",
+address: {
+city: "Hyderabad",
+pincode: 500001
+}
+};
+
+Use:
+Complex data structures
+
+5. Array of Objects
+
+Example:
+const users = [
+{ name: "A", age: 20 },
+{ name: "B", age: 25 }
+];
+
+Use:
+Multiple records (very common in Playwright)
+
+6. Readonly Properties
+
+Example:
+interface User {
+readonly id: number;
+}
+
+Use:
+Prevent modification
+
+7. Object Methods (Functions inside object)
+
+Example:
+const user = {
+name: "Ravi",
+greet() {
+console.log("Hello");
+}
+};
+
+Use:
+Attach behavior with data
+
+Key Reality:
+Objects are a BIG topic in TypeScript.
+
+One-line summary:
+You learned basic objects, but advanced object concepts are still required for real projects.
+
+
+
